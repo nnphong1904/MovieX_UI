@@ -3,6 +3,7 @@ import Movies from '../pages/Movies/Movies';
 import Home from '../pages/Home/Home';
 import SignUp from '../pages/Sign Up/SignUp';
 import LogIn from '../pages/Log In/LogIn';
+import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 import {
   Collapse,
@@ -26,8 +27,9 @@ function NavbarComponent(props){
    
     const toggle= ()=> setIsOpen(!isOpen);
     return (
-      <Router>
-      <div>
+      /*Movies Container*/
+    <Router>
+      <div className="navbar-router">
         <Navbar color="light" light expand="md">
         <NavbarBrand href="/">MovieX</NavbarBrand>
         <NavbarToggler onClick={toggle} />
@@ -48,24 +50,23 @@ function NavbarComponent(props){
           </Nav>
         </Collapse>
       </Navbar>
-    </div>
-
-        <Switch>
-          <Route path="/" exact>
+      <Switch>
+          <Route exact path="/">
             <Home />
           </Route>
           <Route path="/movies">
-            <Movies/>
+            <Movies />
           </Route>
           <Route path="/login">
             <LogIn />
           </Route>
           <Route path="/signup">
-            <SignUp />
+            <SignUp/>
           </Route>
-        </Switch>
-      </Router>
-      ); 
+      </Switch>
+    </div>
+    </Router>
+ ); 
     
 }
 

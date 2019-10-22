@@ -1,0 +1,8 @@
+.progress{
+    width: 500px;
+    position: relative;
+    left: 50%;
+    margin-left: -225px;
+    /* margin-top: auto; */
+    top: 200px;
+}

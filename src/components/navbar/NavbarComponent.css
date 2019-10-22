@@ -1,0 +1,6 @@
+a{
+    margin-right: 10px;
+}
+.navbar > .collapse.navbar-collapse > .navbar-nav > .nav-item > a:hover{
+    text-decoration: none;
+}

@@ -1,6 +1,11 @@
 import React,{useState,useEffect} from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 function PaginationComponent(props){
     const [paginationItemPerPage,setPaginationItemPerPage]= useState(5);
@@ -32,27 +37,29 @@ function PaginationComponent(props){
     }
 
     return (
-        <div>
+      <Router>
+                <div>
                 {props.isLoading===false && <div className="pagination-router">
                 <Pagination aria-label="Page navigation example">      
                     <PaginationItem>
                         <PaginationLink previous />
                     </PaginationItem>     
-                    {displayedPaginationNums.map((item,index)=>(
-                        <PaginationLink 
-                            id = {index}
-                            onClick={(event)=>{props.changeCurrentPage(event);
-                                                changeCurrentDisplayedPageNumber(event)}}              
-                            key={index} 
-                          >
-                        {item}
-                        </PaginationLink>))}
-                    <PaginationItem>
-                        <PaginationLink next   />
-                    </PaginationItem>
+                         {displayedPaginationNums.map((item,index)=>(
+                            <Link className="page-link" to={`/movies?page=${item}`} 
+                                    id = {index}
+                                    onClick={(event)=>{props.changeCurrentPage(event);
+                                                        changeCurrentDisplayedPageNumber(event)}}              
+                                    key={index} 
+                                    >
+                                {item}
+                            </Link>))}
+                        <PaginationItem>
+                            <Link to={`/movies?page=${props.currentPage+1}`} onClick={(event)=>props.increaseCurrentPage(event)} className="page-link">>></Link>
+                        </PaginationItem>
                 </Pagination>
             </div>}
-        </div>
+            </div>
+          </Router>
     );
 }
 export default PaginationComponent;

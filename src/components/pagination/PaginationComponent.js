@@ -8,7 +8,6 @@ import {
   } from "react-router-dom";
 import './PaginationComponent.css';
 function PaginationComponent(props){
-    console.log('pagination re-rendering...');
     const [paginationItemPerPage,setPaginationItemPerPage]= useState(5);
     const [groupOfPaginationItems,setGroupOfPaginationItems] = useState(1);
 
@@ -25,7 +24,7 @@ function PaginationComponent(props){
 
 
     function changeCurrentDisplayedPageNumber(event){
-        console.log(displayedPaginationNums[pageNumberEndIndex-1]);
+
       if (event.target.innerText!=='>>' && event.target.innerText!=='<<'){  
             if (parseInt(event.target.id)===4 && event.target.innerText!=="13"){
                 setPageNumberEndIndex(pageNumberEndIndex+2);
@@ -37,10 +36,14 @@ function PaginationComponent(props){
                 }   
         }
       else {
+        console.log('executing...');
           if (props.currentPage===displayedPaginationNums[displayedPaginationNums.length-1] && props.currentPage!==13){
             setPageNumberEndIndex(pageNumberEndIndex+2);
-            setPageNumberStartIndex(pageNumberStartIndex+2);
-        }
+            setPageNumberStartIndex(pageNumberStartIndex+2);}
+          if (props.currentPage===displayedPaginationNums[0] && props.currentPage!==1){
+            setPageNumberEndIndex(pageNumberEndIndex-2);
+            setPageNumberStartIndex(pageNumberStartIndex-2);
+          }
       }
     }
 
@@ -50,7 +53,10 @@ function PaginationComponent(props){
                 {props.isLoading===false && <div className="pagination-router">
                 <Pagination aria-label="Page navigation example">      
                     <PaginationItem>
-                        <PaginationLink previous />
+                        <Link className="page-link" 
+                              to={`/movies?page=${props.currentPage===1 ? props.currentPage : props.currentPage-1}`}
+                              onClick={(event)=>{props.decreaseCurrentPage(event);
+                                                changeCurrentDisplayedPageNumber(event);}}>{'<<'}</Link>
                     </PaginationItem>     
                          {displayedPaginationNums.map((item,index)=>(
                             <Link className="page-link" to={`/movies?page=${item}`} 

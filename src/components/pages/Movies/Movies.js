@@ -10,7 +10,7 @@ import LoadingComponent from '../../loadingbar/LoadingComponent';
 import axios from 'axios';
 import './Movies.css';
 function Movies(props){
-    console.log('reloaded....');
+   
     const [data, setData]=useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [itemPerPage,setItemPerPage] = useState(8);
@@ -18,11 +18,12 @@ function Movies(props){
         const startIndex= (currentPage*itemPerPage)-itemPerPage;
         const endIndex = itemPerPage+ startIndex;
         const displayedData = data.slice(startIndex,endIndex);
-        console.log(currentPage); 
+        
 
     function increaseCurrentPage(event){
-        setCurrentPage(currentPage+1);
+        if (currentPage<13) {setCurrentPage(currentPage+1);}
     }
+
        
      useEffect(()=>{
         const loadData = async ()=>{

@@ -6,3 +6,7 @@
 .page-link{
     margin: 0;
 }
+.pagination>.page-link:focus{
+        box-shadow: none;
+}
+

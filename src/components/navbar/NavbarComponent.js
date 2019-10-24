@@ -28,7 +28,7 @@ function NavbarComponent(props){
     const toggle= ()=> setIsOpen(!isOpen);
     return (
       /*Movies Container*/
-    <Router>
+    <Router forceRefresh={true}>
       <div className="navbar-router">
         <Navbar color="light" light expand="md">
         <NavbarBrand href="/">MovieX</NavbarBrand>
@@ -54,7 +54,7 @@ function NavbarComponent(props){
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/movies">
+          <Route exact  path="/movies">
             <Movies />
           </Route>
           <Route path="/login">

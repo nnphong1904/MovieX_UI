@@ -3,7 +3,7 @@ import Movies from '../pages/Movies/Movies';
 import Home from '../pages/Home/Home';
 import SignUp from '../pages/Sign Up/SignUp';
 import LogIn from '../pages/Log In/LogIn';
-import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import Cookie from 'js-cookie';
 
 import {
   Collapse,
@@ -23,7 +23,7 @@ import './NavbarComponent.css';
 
 function NavbarComponent(props){
     const [isOpen,setIsOpen]  = useState(false);
-  
+    const [authToken,setAuthToken] = useState(Cookie.get('authToken'));
    
     const toggle= ()=> setIsOpen(!isOpen);
     return (
@@ -41,12 +41,12 @@ function NavbarComponent(props){
             <NavItem>
                 <Link to="/movies">Movies</Link>
             </NavItem>
-            <NavItem>
+            {authToken===undefined && <NavItem>
                 <Link to="/login">Log In</Link>
-            </NavItem>
-            <NavItem>
+            </NavItem>}
+            {authToken===undefined && <NavItem>
                 <Link to="/signup">Sign Up</Link>
-            </NavItem>
+            </NavItem>}
           </Nav>
         </Collapse>
       </Navbar>

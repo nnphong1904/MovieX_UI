@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import Movie from '../Movies/Movies';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import Home from '../Home/Home';
+import NavbarComponent   from '../../navbar/NavbarComponent';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
     Redirect
   } from "react-router-dom";
 import './LogIn.css';
 function LogIn(props){
-    //declare state
+    //declare state 
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
     const [authToken, setAuthToken] =useState('');
@@ -20,8 +20,8 @@ function LogIn(props){
     async function submitHandling(event){
         const data={email,password};
         axios.post('http://localhost:4000/api/login',data)
-            .then(res=>{setAuthToken(res.data)
-                    console.log(res.data)});
+            .then(res=>{console.log(res.data)
+                        setAuthToken(res.data)});
         setEmail('');
         setPassword('');
         event.preventDefault();
@@ -35,9 +35,10 @@ function LogIn(props){
     function onChangePassword(event){
         setPassword(event.target.value);
     }
+    
     return (
-        <Router>
-            {authToken!=='' && <Redirect to='/movies'/>}
+        <Router >
+            {authToken!=='' && <Redirect  to='/'/>}
             {authToken==='' && <Form onSubmit={(data)=>submitHandling(data)}>
                     <FormGroup>
                         <Label for="exampleEmail">Email:</Label>
@@ -61,8 +62,8 @@ function LogIn(props){
                     <Button>Submit</Button>
             </Form>}
             <Switch>
-                <Route path='/movies'>
-                    <Movie/>
+                <Route exact path='/'>
+                    <Home authToken={authToken} email={email}/>
                 </Route>
             </Switch>
         </Router>

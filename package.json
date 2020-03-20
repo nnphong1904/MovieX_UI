@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "calculate-size": "^1.1.1",
+    "js-cookie": "^2.2.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0"

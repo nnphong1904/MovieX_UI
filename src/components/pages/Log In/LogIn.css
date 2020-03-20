@@ -1,0 +1,12 @@
+.form-group>.form-control{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.form-group>label{
+    margin-left: 25%;
+}
+
+.btn.btn-secondary{
+  margin:0 50%;
+}
